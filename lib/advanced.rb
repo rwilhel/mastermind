@@ -8,22 +8,22 @@ class Advanced
   def adv_game_setup
     puts Messages.advanced_message
     adv_code = %w(r g b p y w).sample(8)
-    play_game(adv_code)
+    adv_game_play(adv_code)
   end
 
-  def int_game_play
+  def adv_game_play(adv_code)
     if guess.join == "c" || guess.join == "cheat"
       puts "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{adv_code.join}, ya cheater..."
-      play_game(adv_code)
+      adv_game_play(adv_code)
     elsif guess.join == "q" || guess.join == "quit"
       puts Messages.quit_message
       exit
     elsif guess.length > 8
       puts Messages.long_guess_message
-      play_game(adv_code)
+      adv_game_play(adv_code)
     elsif guess.length < 8
       puts Messages.short_guess_message
-      play_game(adv_code)
+      adv_game_play(adv_code)
     else
       find_code_match(guess, adv_code)
     end
@@ -41,6 +41,6 @@ class Advanced
                   adv_code.include?(x)
               end
     puts Messages.incorrect_message
-    play_game(adv_code)
+    adv_game_play(adv_code)
   end
 end

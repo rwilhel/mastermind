@@ -8,22 +8,22 @@ class Intermediate
   def int_game_setup
     puts Messages.intermediate_message
     int_code = %w(r g b p y).sample(6)
-    play_game(int_code)
+    int_game_play(int_code)
   end
 
-  def int_game_play
+  def int_game_play(int_code)
     if guess.join == "c" || guess.join == "cheat"
       puts "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{int_code.join}, ya cheater..."
-      play_game(int_code)
+      int_game_play(int_code)
     elsif guess.join == "q" || guess.join == "quit"
       puts Messages.quit_message
       exit
     elsif guess.length > 6
       puts Messages.long_guess_message
-      play_game(int_code)
+      int_game_play(int_code)
     elsif guess.length < 6
       puts Messages.short_guess_message
-      play_game(int_code)
+      int_game_play(int_code)
     else
       find_code_match(guess, int_code)
     end
@@ -41,6 +41,6 @@ class Intermediate
                   int_code.include?(x)
               end
     puts Messages.incorrect_message
-    play_game(int_code)
+    int_game_play(int_code)
   end
 end

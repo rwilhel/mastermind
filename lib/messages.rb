@@ -1,4 +1,8 @@
 require './lib/mastermind'
+require './lib/runner'
+require './lib/beginner'
+require './lib/advanced'
+require './lib/intermediate'
 
 class Messages
 
@@ -54,8 +58,8 @@ class Messages
     "Your guess is too short. :( Try again!"
   end
 
-  def correct_message
-    "Congratulations! You guessed the sequence '#{guess}' in #{guess.count} guesses over #{entry.time.to_i/60} min and #{entry.time.to_i%60}sec."
+  def correct_message(guess)
+    "Congratulations! You guessed the sequence '#{guess}' in #{guess_count} guesses over #{time/60} min and #{time%60} sec."
   end
 
   def incorrect_message

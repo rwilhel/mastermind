@@ -74,4 +74,14 @@ class MessagesTest < MiniTest::Test
     assert_equal "Your guess is too long. :( Try again!", messages.long_guess_message
     assert_equal "Your guess is too short. :( Try again!", messages.short_guess_message
   end
+
+  def test_it_can_display_correct_message
+    skip
+    messages = Messages.new
+    guess = "rgby"
+    guess_count = 6
+    time = 245
+
+    assert_equal "Congratulations! You guessed the sequence 'rgby' in 6 guesses over 4 min and 5 sec.", messages.correct_message(guess)
+  end
 end

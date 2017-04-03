@@ -1,4 +1,9 @@
 class Runner
+  attr_reader :guess
+
+  def initialize
+    @guess = guess
+  end
 
   def run_the_files
     mastermind = Mastermind.new
