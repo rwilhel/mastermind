@@ -59,7 +59,7 @@ class Messages
   end
 
   def correct_message
-    "Congratulations! You guessed the sequence '#{guess}' in #{guess.count} guesses over ! Do you want to (p)lay again or (q)uit?"
+    "Congratulations! You guessed the sequence '#{guess}' in #{guess.count} guesses over #{entry.time.to_i/60} min and #{entry.time.to_i%60}sec."
   end
 
   def incorrect_message
