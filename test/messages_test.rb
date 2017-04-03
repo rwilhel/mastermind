@@ -59,7 +59,7 @@ class MessagesTest < MiniTest::Test
   def test_it_can_display_instructions
     messages = Messages.new
 
-    assert_equal "You need to guess the code that was chosen by the computer. Please enter (p)lay or (q)uit", messages.instructions_message
+    assert_equal "You need to guess the code that was chosen by the computer.", messages.instructions_message
   end
 
   def test_it_can_display_quit_message

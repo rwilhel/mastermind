@@ -1,13 +1,9 @@
-require './lib/mastermind'
-require './lib/runner'
-require './lib/beginner'
-require './lib/advanced'
-require './lib/intermediate'
+
 
 class Messages
   attr_accessor :beginner_message
 
-  def opening_message
+  def self.opening_message
     "
 
        ┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛
@@ -22,15 +18,15 @@ class Messages
     "
   end
 
-  def welcome_message
+  def self.welcome_message
     "Welcome to MASTERMIND! Would you like to (p)lay, read the (i)nstructions, or (q)uit? >"
   end
 
-  def level_options_message
+  def self.level_options_message
     "Would you like to play the (b)eginner level for 4 positions, (i)ntermediate level for 6 positions or (a)dvanced level for 8 positions? >"
   end
 
-  def beginner_message
+  def self.beginner_message
     "I have generated a beginner sequence with four elements made up of four colors: (r)ed, (g)reen, (b)lue and (y)ellow. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?"
   end
 
@@ -42,27 +38,29 @@ class Messages
     "I have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?"
   end
 
-  def instructions_message
-    "You need to guess the code that was chosen by the computer. Please enter (p)lay or (q)uit"
+  def self.instructions_message
+    "You need to guess the code that was chosen by the computer."
   end
 
-  def quit_message
+  def self.quit_message
     "Thanks for playing!"
   end
 
-  def long_guess_message
+  def self.long_guess_message
     "Your guess is too long. :( Try again!"
   end
 
-  def short_guess_message
+  def self.short_guess_message
     "Your guess is too short. :( Try again!"
   end
 
-  def correct_message(guess, guess_count)
-    "Congratulations! You guessed the sequence '#{guess}' in #{guess_count} guesses over"
+  def self.correct_message(guess)
+    "Congratulations! You guessed the sequence '#{guess}'"
+    # in #{guess_count} guesses over"
   end
 
-  def incorrect_message
-    "'#{guess}' has #{elements} of the correct elements with #{positions} in the correct positions. Guess(es) taken: #{guess_count}"
+  def self.incorrect_message
+    # "'#{guess}' has #{elements} of the correct elements with #{positions} in the correct positions. Guess(es) taken: #{guess_count}"
+    "Wrong! Please guess again."
   end
 end

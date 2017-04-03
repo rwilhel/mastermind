@@ -12,8 +12,9 @@ class MastermindTest < MiniTest::Test
   end
 
   def test_p_input_goes_to_level_options
+    skip
     mastermind = Mastermind.new
     user_input = "p"
-    assert_equal user_input
+    assert_equal true, mastermind.start_menu_options(user_input).include?("Would you like to play")
   end
 end
