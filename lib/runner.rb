@@ -2,7 +2,7 @@ class Runner
   attr_reader :guess
 
   def initialize
-    @guess = guess
+    @guess = guess_input
   end
 
   def run_the_files
@@ -24,4 +24,7 @@ class Runner
     guess = gets.chomp.downcase.chars
     mastermind.beg_game_play(guess)
   end
+
+
+
 end

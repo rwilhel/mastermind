@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/messages'
 
-module MessagesTest < MiniTest::Test
+class MessagesTest < MiniTest::Test
 
   def test_it_exists
     messages = Messages.new
@@ -76,12 +76,11 @@ module MessagesTest < MiniTest::Test
   end
 
   def test_it_can_display_correct_message
-    skip
     messages = Messages.new
     guess = "rgby"
     guess_count = 6
-    time = 245
+    # time = 245
 
-    assert_equal "Congratulations! You guessed the sequence 'rgby' in 6 guesses over 4 min and 5 sec.", messages.correct_message(guess)
+    assert_equal "Congratulations! You guessed the sequence 'rgby' in 6 guesses over", messages.correct_message(guess, guess_count)
   end
 end

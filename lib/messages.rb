@@ -4,7 +4,7 @@ require './lib/beginner'
 require './lib/advanced'
 require './lib/intermediate'
 
-module Messages
+class Messages
   attr_accessor :beginner_message
 
   def opening_message
@@ -58,11 +58,11 @@ module Messages
     "Your guess is too short. :( Try again!"
   end
 
-  def correct_message(guess)
-    "Congratulations! You guessed the sequence '#{guess}' in #{guess_count} guesses over #{time/60} min and #{time%60} sec."
+  def correct_message(guess, guess_count)
+    "Congratulations! You guessed the sequence '#{guess}' in #{guess_count} guesses over"
   end
 
   def incorrect_message
-    "'#{guess}' has #{elements} of the correct elements with #{positions} in the correct positions. Guess(es) taken: #{guess.count}"
+    "'#{guess}' has #{elements} of the correct elements with #{positions} in the correct positions. Guess(es) taken: #{guess_count}"
   end
 end
