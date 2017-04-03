@@ -9,4 +9,6 @@ class MastermindTest < MiniTest::Test
     mastermind = Mastermind.new
     assert_instance_of Mastermind, mastermind
   end
+
+
 end
