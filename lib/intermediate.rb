@@ -1,4 +1,9 @@
 class Intermediate
+  attr_reader :int_code
+
+  def initialize
+    @int_code = int_code
+  end
 
   def int_game_setup
     puts Messages.intermediate_message
@@ -8,7 +13,7 @@ class Intermediate
 
   def int_game_play
     if guess.join == "c" || guess.join == "cheat"
-      puts Messages.cheat_message
+      puts "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{int_code.join}, ya cheater..."
       play_game(int_code)
     elsif guess.join == "q" || guess.join == "quit"
       puts Messages.quit_message

@@ -1,14 +1,19 @@
 class Beginner
+  attr_reader :beg_code
+
+  def initialize
+    @beg_code = beg_code
+  end
 
   def beg_game_setup
     puts Messages.beginner_message
-    beg_code = %w(rgby).sample(4)
+    beg_code = %w(r g b y).sample(4)
     play_game(beg_code)
   end
 
   def beg_game_play
     if guess.join == "c" || guess.join == "cheat"
-      puts Messages.cheat_message
+      puts   puts "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{beg_code.join}, ya cheater..."
       play_game(beg_code)
     elsif guess.join == "q" || guess.join == "quit"
       puts Messages.quit_message

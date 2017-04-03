@@ -38,17 +38,40 @@ class MessagesTest < MiniTest::Test
     assert_equal "Would you like to play the (b)eginner level for 4 positions, (i)ntermediate level for 6 positions or (a)dvanced level for 8 positions? >", messages.level_options_message
   end
 
-  def test_it_can_display_message_for_chosen_level
-    skip
+  def test_it_can_display_message_for_beg_level
     messages = Messages.new
-    level = :beginner
 
-    assert_equal "I have generated an intermediate sequence with six elements made up of five colors: (r)ed, (g)reen, (b)lue, (p)urple and (y)ellow. Type (q)uit at any time to end the game. What's your guess?", messages.level_options_message(level)
+    assert_equal "I have generated a beginner sequence with four elements made up of four colors: (r)ed, (g)reen, (b)lue and (y)ellow. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?", messages.beginner_message
   end
 
-  def test_it_can_display_message_for_input_p
+  def test_it_can_display_message_for_int_level
     messages = Messages.new
-    user_input == "p"
-    assert_equal   "I have generated a beginner sequence with four elements made up of four colors: (r)ed, (g)reen, (b)lue and (y)ellow. Type (q)uit at any time to end the game. What's your guess?", messages.start_play_message(user_input)
+
+    assert_equal "I have generated an intermediate sequence with six elements made up of five colors: (r)ed, (g)reen, (b)lue, (p)urple and (y)ellow. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?", messages.intermediate_message
+  end
+
+  def test_it_can_display_message_for_adv_level
+    messages = Messages.new
+
+    assert_equal "I have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?", messages.advanced_message
+  end
+
+  def test_it_can_display_instructions
+    messages = Messages.new
+
+    assert_equal "You need to guess the code that was chosen by the computer. Please enter (p)lay or (q)uit", messages.instructions_message
+  end
+
+  def test_it_can_display_quit_message
+    messages = Messages.new
+
+    assert_equal "Thanks for playing!", messages.quit_message
+  end
+
+  def test_it_can_display_length_error_messages
+    messages = Messages.new
+
+    assert_equal "Your guess is too long. :( Try again!", messages.long_guess_message
+    assert_equal "Your guess is too short. :( Try again!", messages.short_guess_message
   end
 end

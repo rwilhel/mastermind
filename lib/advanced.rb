@@ -1,4 +1,9 @@
 class Advanced
+  attr_reader :adv_code
+
+  def initialize
+    @adv_code = adv_code
+  end
 
   def adv_game_setup
     puts Messages.advanced_message
@@ -8,7 +13,7 @@ class Advanced
 
   def int_game_play
     if guess.join == "c" || guess.join == "cheat"
-      puts Messages.cheat_message
+      puts "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{adv_code.join}, ya cheater..."
       play_game(adv_code)
     elsif guess.join == "q" || guess.join == "quit"
       puts Messages.quit_message

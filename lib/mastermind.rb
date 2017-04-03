@@ -3,11 +3,9 @@ require './lib/messages'
 require './lib/runner'
 
 class Mastermind
-  attr_reader :guess, :beg_code
+  attr_reader 
 
   def initialize
-    @guess = guess
-    @beg_code = beg_code
   end
 
   def game_start
@@ -15,8 +13,6 @@ class Mastermind
     sleep(2)
     puts Messages.welcome_message
   end
-
-  def initial_user_input
 
   def start_menu_options
     if user_input == "p" || user_input == "play"
@@ -40,6 +36,4 @@ class Mastermind
       advanced
     end
   end
-
-  
 end

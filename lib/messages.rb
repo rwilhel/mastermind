@@ -46,10 +46,6 @@ class Messages
     "Thanks for playing!"
   end
 
-  def cheat_message
-    "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{code.join}, ya cheater..."
-  end
-
   def long_guess_message
     "Your guess is too long. :( Try again!"
   end
