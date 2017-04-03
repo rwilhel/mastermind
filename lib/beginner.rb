@@ -1,15 +1,21 @@
-class Beginner
-  attr_reader :beg_code, :guess_count
+require 'pry'
+require './lib/messages'
+require './lib/mastermind'
 
+class Beginner
+
+  include Messages
+
+  attr_reader :beg_code, :guess_count
   def initialize
-    @beg_code = beg_code
     @guess_count = guess_count
   end
 
   def beg_game_setup
-    puts Messages.beginner_message
-    beg_code = %w(r g b y).sample(4)
-    beg_game_game(beg_code)
+    puts beginner_message
+    @beg_code = %w(r g b y).sample(4)
+        binding.pry
+    beg_game_play(beg_code)
   end
 
   def beg_game_play(beg_code)

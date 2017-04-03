@@ -10,4 +10,10 @@ class BeginnerTest < MiniTest::Test
     assert_instance_of Beginner, beginner
   end
 
+  def test_it_has_a_beginner_code
+    beginner = Beginner.new
+
+    assert_equal ["y", "b", "g", "r"], beginner.beg_code
+  end
+
 end

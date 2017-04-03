@@ -4,8 +4,8 @@ require './lib/beginner'
 require './lib/advanced'
 require './lib/intermediate'
 
-class Messages
-
+module Messages
+  attr_accessor :beginner_message
 
   def opening_message
     "

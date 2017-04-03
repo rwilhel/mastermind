@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/messages'
 
-class MessagesTest < MiniTest::Test
+module MessagesTest < MiniTest::Test
 
   def test_it_exists
     messages = Messages.new
