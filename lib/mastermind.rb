@@ -1,9 +1,13 @@
 require 'pry'
 require './lib/messages'
+require './lib/runner'
 
-class MastermindTest
+class Mastermind
+  attr_reader :guess, :beg_code
 
   def initialize
+    @guess = guess
+    @beg_code = beg_code
   end
 
   def game_start
@@ -12,9 +16,9 @@ class MastermindTest
     puts Messages.welcome_message
   end
 
+  def initial_user_input
+
   def start_menu_options
-    loop do
-    user_input = gets.chomp.downcase
     if user_input == "p" || user_input == "play"
       level_options
     elsif user_input == "i" || user_input == "instructions"
@@ -27,10 +31,7 @@ class MastermindTest
     end
   end
 
-  def level_options_message
-    puts Messages.level_options_message
-    loop do
-    level_input = gets.chomp.downcase
+  def level_options
     if level_input == "b" || user_input == "beginner"
       beginner
     elsif level_input == "i" || user_input == "intermediate"
@@ -40,9 +41,42 @@ class MastermindTest
     end
   end
 
-  def beginner_game
+  def beg_game_setup
     puts Messages.beginner_message
-    key = %w{r r r r g g g g b b b b y y y y}.sample(4)
-    play_game(key)
+    beg_code = %w{r r r r g g g g b b b b y y y y}.sample(4)
+    play_game(beg_code)
+  end
 
+  def beg_game_play
+    if guess.join == "c" || guess.join == "cheat"
+      puts Messages.cheat_message
+      play_game(beg_code)
+    elsif guess.join == "q" || guess.join == "quit"
+      puts Messages.quit_message
+      exit
+    elsif guess.length > 4
+      puts Messages.long_guess_message
+      play_game(beg_code)
+    elsif guess.length < 4
+      puts Messages.short_guess_message
+      play_game(beg_code)
+    else
+      find_code_match(guess, beg_code)
+    end
+  end
+
+  def check_letters_for_code_match(guess, beg_code)
+    if guess == beg_code
+      puts Messages.correct_message
+      exit
+    end
+    positions = guess.zip(beg_code).count do | x |
+                x[0] == x[1]
+              end
+    elements = guess.uniq.count do | x |
+                  beg_code.include?(x)
+              end
+    puts Messages.incorrect_message
+    play_game(beg_code)
+  end
 end
