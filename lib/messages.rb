@@ -1,3 +1,5 @@
+# require './lib/gameplay'
+
 class Messages
 
 
@@ -21,28 +23,24 @@ class Messages
   end
 
   def level_options_message
-    "What level would you like to play? Select (b)beginnger for 4 positions, (i)intermediate for 6 positions or (a) advanced for 8 positions."
+    "Would you like to play the (b)eginner level for 4 positions, (i)ntermediate level for 6 positions or (a)dvanced level for 8 positions? >"
   end
 
   def level_chosen_message(level)
     case level
-    when :beginner then "I have generated a beginner sequence   with four elements made up of: (r)ed,(g)reen, (b)lue and (y)ellow. Use (q)uit at any time to end the game. What's your guess?"
-    when :intermediate then "I have generated an intermediate sequence with six elements made up of five colors: (r)ed, (g)reen, (b)lue, (p)urple and (y)ellow. Use (q)uit at any time to end the game. What's your guess?"
-    when :advanced then "I have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Use (q)uit at any time to end the game. What's your guess?"
+    when :beginner then "I have generated a beginner sequence   with four elements made up of four colors: (r)ed, (g)reen, (b)lue and (y)ellow. Type (q)uit at any time to end the game. What's your guess?"
+    when :intermediate then "I have generated an intermediate sequence with six elements made up of five colors: (r)ed, (g)reen, (b)lue, (p)urple and (y)ellow. Type (q)uit at any time to end the game. What's your guess?"
+    when :advanced then "I have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Type (q)uit at any time to end the game. What's your guess?"
     end
   end
 
-  def start_play_message(input)
-    if input == "p"
-    "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game. What's your guess?"
-    elsif input == "i"
-    "MasterMind is a game! Please enter (p)lay or (q)uit"
-    elsif input == "q"
+  def start_play_message(user_input)
+    if user_input == "p"
+    "I have generated a beginner sequence with four elements made up of four colors: (r)ed, (g)reen, (b)lue and (y)ellow. Type (q)uit at any time to end the game. What's your guess?"
+    elsif user_input == "i"
+    "You need to guess the code that was chosen by the computer. Please enter (p)lay or (q)uit"
+    elsif user_input == "q"
     "Thanks for playing!"
-    elsif input == "v"
-    "Please enter one of the given letters\n"
     end
   end
-
-
 end

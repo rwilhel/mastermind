@@ -35,19 +35,20 @@ class MessagesTest < MiniTest::Test
   def test_it_can_ask_user_for_a_level
     messages = Messages.new
 
-    assert_equal "What level would you like to play? Select (b)beginnger for 4 positions, (i)intermediate for 6 positions or (a) advanced for 8 positions.", messages.level_options_message
+    assert_equal "Would you like to play the (b)eginner level for 4 positions, (i)ntermediate level for 6 positions or (a)dvanced level for 8 positions? >", messages.level_options_message
   end
 
   def test_it_can_display_message_for_chosen_level
     skip
     messages = Messages.new
+    level = :beginner
 
-
-    assert_equal "I have generated a beginner sequence   with four elements made up of: (r)ed,(g)reen, (b)lue and (y)ellow. Use (q)uit at any time to end the game. What's your guess?", messages.level_options_message(level)
+    assert_equal "I have generated an intermediate sequence with six elements made up of five colors: (r)ed, (g)reen, (b)lue, (p)urple and (y)ellow. Type (q)uit at any time to end the game. What's your guess?", messages.level_options_message(level)
   end
 
   def test_it_can_display_message_for_input_p
     messages = Messages.new
-    assert_equal "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game. What's your guess?", messages.start_play_message(command)
+    user_input == "p"
+    assert_equal   "I have generated a beginner sequence with four elements made up of four colors: (r)ed, (g)reen, (b)lue and (y)ellow. Type (q)uit at any time to end the game. What's your guess?", messages.start_play_message(user_input)
   end
 end
