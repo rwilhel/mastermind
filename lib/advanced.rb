@@ -1,46 +1,65 @@
+require 'pry'
+require_relative 'messages'
+require_relative 'user'
+
 class Advanced
-  attr_reader :adv_code
+  attr_accessor :adv_code
+  attr_reader :guess_count, :playing_game
 
   def initialize
-    @adv_code = adv_code
+    @guess_count = 0
+    @playing_game = true
+    @user = User.new
+    @adv_code = %w(r g b y p w).sample(8)
+    # @adv_code = 8.collect{ %w(r g b y p w).sample }
   end
 
-  def adv_game_setup
+  def current_game(guess = "")
     puts Messages.advanced_message
-    adv_code = %w(r g b p y w).sample(8)
-    adv_game_play(adv_code)
-  end
-
-  def adv_game_play(adv_code)
-    if guess.join == "c" || guess.join == "cheat"
-      puts "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{adv_code.join}, ya cheater..."
-      adv_game_play(adv_code)
-    elsif guess.join == "q" || guess.join == "quit"
-      puts Messages.quit_message
-      exit
-    elsif guess.length > 8
-      puts Messages.long_guess_message
-      adv_game_play(adv_code)
-    elsif guess.length < 8
-      puts Messages.short_guess_message
-      adv_game_play(adv_code)
+    guess = @user.user_input.chars
+    if guess[0] == "q"
+      @playing_game = false
+    elsif guess[0] == "c"
+      cheat_response(adv_code)
     else
-      find_code_match(guess, adv_code)
+      check_guess(guess)
     end
   end
 
-  def check_letters_for_code_match(guess, adv_code)
+  def check_guess(guess)
     if guess == adv_code
-      puts Messages.correct_message
-      exit
+      print Messages.correct_message(guess)
+      @playing_game = false
+    elsif guess.count > 8
+      print Messages.long_guess_message
+      @playing_game = true
+    elsif guess.count < 8
+      print Messages.short_guess_message
+      @playing_game = true
+    else
+      print Messages.incorrect_message
+      @playing_game = true
     end
+  end
+
+  def cheat_response(adv_code)
+    puts "The secret code is #{adv_code.join}."
+    adv_game_start
+  end
+
+  def adv_game_start
+    while playing_game == true
+      current_game
+    end
+  end
+
+  def find_positions_elements(guess, adv_code)
     positions = guess.zip(adv_code).count do | x |
                 x[0] == x[1]
               end
     elements = guess.uniq.count do | x |
                   adv_code.include?(x)
               end
-    puts Messages.incorrect_message
-    adv_game_play(adv_code)
   end
+
 end

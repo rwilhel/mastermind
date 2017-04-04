@@ -5,6 +5,8 @@ require_relative 'user'
 # require './lib/runner'
 
 class Beginner
+  COLORS = ["r", "b", "g", "y"].freeze
+
   attr_accessor :beg_code
   attr_reader :guess_count, :playing_game
 
@@ -12,7 +14,13 @@ class Beginner
     @guess_count = 0
     @playing_game = true
     @user = User.new
-    @beg_code = %w(r g b y).sample(4)
+    # @beg_code = %w(r g b y).sample(4)
+  end
+
+  def beg_game_setup
+	  4.times do
+      @beg_code << COLORS.shuffle.pop
+  	end
   end
 
   def current_game(guess = "")
