@@ -11,7 +11,7 @@ class Runner
     if user_options == "b" || user_options == "beginner"
       Beginner.new.beg_game_start
     elsif user_options == "i" || user_options == "intermediate"
-      Intermediate.new
+      Intermediate.new.int_game_start
     elsif user_options == "a" || user_options == "advanced"
       Advanced.new
     end

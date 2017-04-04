@@ -1,46 +1,64 @@
+require 'pry'
+require_relative 'messages'
+require_relative 'user'
+
 class Intermediate
-  attr_reader :int_code
+  attr_accessor :int_code
+  attr_reader :guess_count, :playing_game
 
   def initialize
-    @int_code = int_code
+    @guess_count = 0
+    @playing_game = true
+    @user = User.new
+    @int_code = %w(r g b p y).sample(6)
   end
 
-  def int_game_setup
+  def current_game(guess = "")
     puts Messages.intermediate_message
-    int_code = %w(r g b p y).sample(6)
-    int_game_play(int_code)
-  end
-
-  def int_game_play(int_code)
-    if guess.join == "c" || guess.join == "cheat"
-      puts "Wow. Are you serious? Hmmm... Ok, fine! The secret code is #{int_code.join}, ya cheater..."
-      int_game_play(int_code)
-    elsif guess.join == "q" || guess.join == "quit"
-      puts Messages.quit_message
-      exit
-    elsif guess.length > 6
-      puts Messages.long_guess_message
-      int_game_play(int_code)
-    elsif guess.length < 6
-      puts Messages.short_guess_message
-      int_game_play(int_code)
+    guess = @user.user_input.chars
+    if guess[0] == "q"
+      @playing_game = false
+    elsif guess[0] == "c"
+      cheat_response(int_code)
     else
-      find_code_match(guess, int_code)
+      check_guess(guess)
     end
   end
 
-  def check_letters_for_code_match(guess, int_code)
+  def check_guess(guess)
     if guess == int_code
-      puts Messages.correct_message
-      exit
+      print Messages.correct_message(guess)
+      @playing_game = false
+    elsif guess.count > 6
+      print Messages.long_guess_message
+      @playing_game = true
+    elsif guess.count < 6
+      print Messages.short_guess_message
+      @playing_game = true
+    else
+      print Messages.incorrect_message
+      @playing_game = true
     end
+  end
+
+  def cheat_response(int_code)
+    puts "The secret code is #{int_code.join}."
+    int_game_start
+  end
+
+  def int_game_start
+    while playing_game == true
+      current_game
+    end
+  end
+
+  def find_positions_elements(guess, int_code)
     positions = guess.zip(int_code).count do | x |
                 x[0] == x[1]
               end
     elements = guess.uniq.count do | x |
                   int_code.include?(x)
               end
-    puts Messages.incorrect_message
-    int_game_play(int_code)
   end
+
 end

@@ -1,0 +1,5 @@
+require './test/beginner_test'
+require './test/advanced_test'
+require './test/intermediate_test'
+require './test/mastermind_test'
+require './test/messages_test'

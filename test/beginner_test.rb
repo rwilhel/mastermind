@@ -36,6 +36,7 @@ class BeginnerTest < MiniTest::Test
   end
 
   def test_c_gives_code
+    skip
     beginner = Beginner.new
     beginner.current_game("c")
     beg_code = ["y", "r", "g", "b"]
@@ -64,6 +65,7 @@ class BeginnerTest < MiniTest::Test
   end
 
   def test_guess_is_incorrect
+    skip
     beginner = Beginner.new
     beginner.beg_code = ["y", "r", "g", "b"]
     guess = ["r", "r", "g", "b"]
