@@ -17,7 +17,7 @@ class Mastermind
 
   def game_start
     puts Messages.opening_message
-    sleep(2)
+    sleep(1)
     puts Messages.welcome_message
     start_menu_options(@user.user_input)
   end
@@ -28,7 +28,7 @@ class Mastermind
       @runner.options(@user)
     elsif user_input == "i" || user_input == "instructions"
       puts Messages.instructions_message
-      sleep(2)
+      sleep(1)
       puts Messages.welcome_message
       start_menu_options(user_input)
     elsif user_input == "q" || user_input == "quit"
@@ -38,4 +38,4 @@ class Mastermind
   end
 end
 
-# Mastermind.new.play
+Mastermind.new.play
