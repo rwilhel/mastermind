@@ -10,7 +10,7 @@ class Intermediate
     @guess_count = 0
     @playing_game = true
     @user = User.new
-    @int_code = %w(r r r r r r r g g g g g g b b b b b b p p p p p p p y y y y y y).sample(6)
+    @int_code = [1,2,3,4,5,6].map { ["r","g","b","y","p"].sample }
   end
 
   def current_game(guess = "")

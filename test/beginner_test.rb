@@ -11,15 +11,15 @@ class BeginnerTest < MiniTest::Test
     assert_instance_of Beginner, beginner
   end
 
-  # def test_it_has_a_beginner_code
-  #   beginner = Beginner.new
-  #   result = beginner.beg_code
-  #
-  #   assert_equal true, result.include?("r")
-  #   assert_equal true, result.include?("g")
-  #   assert_equal true, result.include?("b")
-  #   assert_equal true, result.include?("y")
-  # end
+  def test_it_has_a_beginner_code
+    beginner = Beginner.new
+    result = beginner.beg_code
+
+    assert_equal true, result.include?("r")
+    assert_equal true, result.include?("g")
+    assert_equal true, result.include?("b")
+    assert_equal true, result.include?("y")
+  end
 
   def test_it_is_random_code_each_time
     beginner = Beginner.new

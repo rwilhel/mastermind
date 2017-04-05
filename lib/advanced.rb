@@ -10,8 +10,7 @@ class Advanced
     @guess_count = 0
     @playing_game = true
     @user = User.new
-    @adv_code = %w(r g b y p w).sample(8)
-    # @adv_code = 8.collect{ %w(r g b y p w).sample }
+    @adv_code = [1,2,3,4,5,6,7,8].map { ["r","g","b","y","p","w"].sample }
   end
 
   def current_game(guess = "")
