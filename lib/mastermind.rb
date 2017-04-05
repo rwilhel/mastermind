@@ -36,6 +36,16 @@ class Mastermind
       exit
     end
   end
+  # 
+  # def calculate_time
+  #   if @playing_game == false
+  #     @playing_game = Time.new
+  #     total = finish - start.round(2)
+  #     puts @minutes = Time.at(total).utc.strftime("%M")
+  #     puts @seconds = Time.at(total).utc.strftime("%S")
+  #     time
+  #   end
+  # end
 end
 
 Mastermind.new.play

@@ -15,10 +15,7 @@ class BeginnerTest < MiniTest::Test
     beginner = Beginner.new
     result = beginner.beg_code
 
-    assert_equal true, result.include?("r")
-    assert_equal true, result.include?("g")
-    assert_equal true, result.include?("b")
-    assert_equal true, result.include?("y")
+    assert_equal true, result.any?{|color| color = "r", "g", "b", "y"}
   end
 
   def test_it_is_random_code_each_time
@@ -65,11 +62,10 @@ class BeginnerTest < MiniTest::Test
   end
 
   def test_guess_is_incorrect
-    skip
-    beginner = Beginner.new
-    beginner.beg_code = ["y", "r", "g", "b"]
-    guess = ["r", "r", "g", "b"]
 
-    assert_equal "Wrong! Please guess again.", beginner.check_guess(guess)
+    beginner = Beginner.new
+    element = 3
+
+    assert_equal "Elements: 3", Messages.incorrect_message(element)
   end
 end

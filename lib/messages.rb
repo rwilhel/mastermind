@@ -1,4 +1,5 @@
-
+require 'pry'
+require './lib/beginner'
 
 class Messages
 
@@ -34,7 +35,7 @@ class Messages
   end
 
   def self.advanced_message
-    "I have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?\n"
+    "\nI have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?\n"
   end
 
   def self.instructions_message
@@ -58,8 +59,8 @@ class Messages
     # in #{guess_count} guesses over"
   end
 
-  def self.incorrect_message
-    # "'#{guess}' has #{elements} of the correct elements with #{positions} in the correct positions. Guess(es) taken: #{guess_count}"
-    "Wrong! Please guess again.\n"
+  def self.incorrect_message(guess, element, position)
+    "Wrong! Your guess has #{element} of the correct elements with #{position} in the correct positions. Guess(es) taken: #{guess_count}\n"
+
   end
 end
