@@ -5,7 +5,7 @@ require_relative 'user'
 # require './lib/runner'
 
 class Beginner
-  COLORS = ["r", "b", "g", "y"].freeze
+  COLORS = ["r", "b", "g", "y"]
 
   attr_accessor :beg_code
   attr_reader :guess_count, :playing_game
@@ -14,25 +14,43 @@ class Beginner
     @guess_count = 0
     @playing_game = true
     @user = User.new
-    # @beg_code = %w(r g b y).sample(4)
   end
 
-  def beg_game_setup
-	  4.times do
-      @beg_code << COLORS.shuffle.pop
-  	end
+  # def beg_game_setup
+	#   4.times do
+  #     @beg_code << COLORS.shuffle.pop
+  # 	end
+  # end
+
+  def beg_code
+    code = []
+    4.times do
+      code << COLORS.shuffle.pop
+    end
+    return code
   end
 
   def current_game(guess = "")
+    answer = beg_code
     puts Messages.beginner_message
     guess = @user.user_input.chars
-    if guess[0] == "q"
-      @playing_game = false
-    elsif guess[0] == "c"
-      cheat_response(beg_code)
-    else
-      check_guess(guess)
+    while guess[0] != "q"
+      if guess [0] == "c"
+        cheat_response(answer)
+        guess = @user.user_input.chars
+      elsif
+        check_guess(guess)
+      end
+    exit
     end
+    # if guess[0] == "q"
+    #   @playing_game = false
+    # elsif guess[0] == "c"
+    #   # cheat_response(beg_code)
+    #   cheat_response(answer)
+    # else
+    #   check_guess(guess)
+    # end
   end
 
   def check_guess(guess)
@@ -53,7 +71,8 @@ class Beginner
 
   def cheat_response(beg_code)
     puts "The secret code is #{beg_code.join}."
-    beg_game_start
+
+    # beg_game_start
   end
 
   def beg_game_start
