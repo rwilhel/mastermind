@@ -33,43 +33,36 @@ class IntermediateTest < MiniTest::Test
   end
 
   def test_c_gives_cheat_code
-    skip
     intermediate = Intermediate.new
-    intermediate.current_game("c")
-    int_code = ["y", "r", "g", "b", "p"]
-    assert_equal "The secret code is yrgbp.", intermediate.cheat_response(int_code)
+    int_code = ["y", "r", "g", "b", "p", "p"]
+
+    assert_equal "The secret code is yrgbpp.", intermediate.cheat_response(int_code)
   end
 
   def test_guess_can_win
-    skip
-    intermediate = Intermediate.new
-    intermediate.check_guess(intermediate.int_code)
-    int_code = ["y", "r", "b", "y", "w", "y"]
-    guess = ["y", "r", "b", "y", "w", "y"]
+    intermediate = Intermediate.
+    guess = ["y", "r", "b", "g", "p", "p"]
 
-    assert_equal false, intermediate.int_game_win(guess)
+    assert_equal false, int_game_win(["y", "r", "b", "g", "p", "p"]).playing_game
   end
 
   def test_guess_is_too_long
     intermediate = Intermediate.new
-    intermediate.check_guess(["y", "r", "b", "g", "p", "p"])
+    guess = ["y", "r", "b", "g", "p", "p", "w"]
 
-    assert_equal true, intermediate.playing_game
+    assert_equal true, intermediate.guess_long(guess)
   end
 
   def test_guess_is_too_short
     intermediate = Intermediate.new
-    intermediate.check_guess(["y", "p", "g"])
+    guess = ["y", "p", "g"]
 
-    assert_equal true, intermediate.playing_game
+    assert_equal true, intermediate.guess_short(guess)
   end
 
   def test_guess_is_incorrect
-    skip
     intermediate = Intermediate.new
-    intermediate.int_code = ["y", "r", "g", "b", "p", "p"]
-    guess = ["r", "r", "g", "b", "p", "y"]
 
-    assert_equal "Wrong! Please guess again.", intermediate.check_guess(guess)
+    assert_equal true, intermediate.playing_game
   end
 end

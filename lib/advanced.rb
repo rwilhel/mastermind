@@ -21,8 +21,14 @@ class Advanced
       @playing_game = false
     elsif guess[0] == "c"
       cheat_response(adv_code)
+    elsif guess == adv_code
+      guess_is_right(guess)
+    elsif guess.count > 8
+      guess_long(guess)
+    elsif guess.count < 8
+      guess_short(guess)
     else
-      check_guess(guess)
+      guess_wrong(guess)
     end
   end
 
@@ -41,24 +47,28 @@ class Advanced
     @element = correct_elements.length
   end
 
-  def check_guess(guess)
-    if guess == adv_code
-      adv_game_win(guess)
-    elsif guess.count > 8
-      track_guess
-      print Messages.long_guess_message
-      @playing_game = true
-    elsif guess.count < 8
-      track_guess
-      print Messages.short_guess_message
-      @playing_game = true
-    else
-      track_guess
-      position_compare(guess, adv_code)
-      color_compare(guess, adv_code)
-      print Messages.incorrect_message(@element, @position, @guess_count)
-      @playing_game = true
-    end
+  def guess_is_right(guess)
+    adv_game_win(guess)
+  end
+
+  def guess_long(guess)
+    track_guess
+    print Messages.long_guess_message
+    @playing_game = true
+  end
+
+  def guess_short(guess)
+    track_guess
+    print Messages.short_guess_message
+    @playing_game = true
+  end
+
+  def guess_wrong(guess)
+    track_guess
+    position_compare(guess, adv_code)
+    color_compare(guess, adv_code)
+    print Messages.incorrect_message(@element, @position, @guess_count)
+    @playing_game = true
   end
 
   def track_guess

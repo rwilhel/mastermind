@@ -31,17 +31,15 @@ class MessagesTest < MiniTest::Test
   end
 
   def test_it_can_display_welcome_message
-    skip
     messages = Messages.new
 
-    assert_equal "Welcome to MASTERMIND! Would you like to (p)lay, read the (i)nstructions, or (q)uit? >", messages.welcome_message
+    assert_equal "Welcome to MASTERMIND! Would you like to (p)lay, read the (i)nstructions, or (q)uit? >\n", Messages.welcome_message
   end
 
   def test_it_can_ask_user_for_a_level
-    skip
     messages = Messages.new
 
-    assert_equal "Would you like to play the (b)eginner level for 4 positions, (i)ntermediate level for 6 positions or (a)dvanced level for 8 positions? >", messages.level_options_message
+    assert_equal "Would you like to play the (b)eginner level for 4 positions, (i)ntermediate level for 6 positions or (a)dvanced level for 8 positions? >\n", Messages.level_options_message
   end
 
   def test_it_can_display_message_for_beg_level
@@ -53,13 +51,13 @@ class MessagesTest < MiniTest::Test
   def test_it_can_display_message_for_int_level
     messages = Messages.new
 
-    assert_equal "I have generated an intermediate sequence with six elements made up of five colors: (r)ed, (g)reen, (b)lue, (p)urple and (y)ellow. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?", Messages.intermediate_message
+    assert_equal "I have generated an intermediate sequence with six elements made up of five colors: (r)ed, (g)reen, (b)lue, (p)urple and (y)ellow. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?\n", Messages.intermediate_message
   end
 
   def test_it_can_display_message_for_adv_level
     messages = Messages.new
 
-    assert_equal "I have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?", messages.advanced_message
+    assert_equal "\nI have generated an advanced sequence with eight elements made up of six colors (r)ed, (g)reen, (b)lue, (p)urple, (y)ellow and (w)hite. Type (q)uit at any time to end the game. Get the secret code by typing (c)heat. What's your guess?\n", Messages.advanced_message
   end
 
   def test_it_can_display_instructions
@@ -75,11 +73,10 @@ class MessagesTest < MiniTest::Test
   end
 
   def test_it_can_display_length_error_messages
-    skip
     messages = Messages.new
 
-    assert_equal "Your guess is too long. :( Try again!", messages.long_guess_message
-    assert_equal "Your guess is too short. :( Try again!", messages.short_guess_message
+    assert_equal "Your guess is too long. :( Try again!\n", Messages.long_guess_message
+    assert_equal "Your guess is too short. :( Try again!\n", Messages.short_guess_message
   end
 
   def test_it_can_display_correct_message

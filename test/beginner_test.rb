@@ -91,7 +91,6 @@ class BeginnerTest < MiniTest::Test
   end
 
   def test_it_can_find_game_duration
-    skip
     beginner = Beginner.new
     beginner.beg_game_win(["y", "r", "b", "g"])
 

@@ -30,7 +30,7 @@ class Mastermind
       puts Messages.instructions_message
       sleep(1)
       puts Messages.welcome_message
-      start_menu_options(user_input)
+      start_menu_options(@user.user_input)
     elsif user_input == "q" || user_input == "quit"
       puts Messages.quit_message
       exit

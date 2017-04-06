@@ -21,8 +21,14 @@ class Intermediate
       @playing_game = false
     elsif guess[0] == "c"
       cheat_response(int_code)
+    elsif guess == int_code
+      guess_is_right(guess)
+    elsif guess.count > 6
+      guess_long(guess)
+    elsif guess.count < 6
+      guess_short(guess)
     else
-      check_guess(guess)
+      guess_wrong(guess)
     end
   end
 
@@ -41,24 +47,28 @@ class Intermediate
     @element = correct_elements.length
   end
 
-  def check_guess(guess)
-    if guess == int_code
-      int_game_win(guess)
-    elsif guess.count > 6
-      track_guess
-      print Messages.long_guess_message
-      @playing_game = true
-    elsif guess.count < 6
-      track_guess
-      print Messages.short_guess_message
-      @playing_game = true
-    else
-      track_guess
-      position_compare(guess, int_code)
-      color_compare(guess, int_code)
-      print Messages.incorrect_message(@element, @position, @guess_count)
-      @playing_game = true
-    end
+  def guess_is_right(guess)
+    int_game_win(guess)
+  end
+
+  def guess_long(guess)
+    track_guess
+    print Messages.long_guess_message
+    @playing_game = true
+  end
+
+  def guess_short(guess)
+    track_guess
+    print Messages.short_guess_message
+    @playing_game = true
+  end
+
+  def guess_wrong(guess)
+    track_guess
+    position_compare(guess, int_code)
+    color_compare(guess, int_code)
+    print Messages.incorrect_message(@element, @position, @guess_count)
+    @playing_game = true
   end
 
   def track_guess
