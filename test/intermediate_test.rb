@@ -15,11 +15,7 @@ class IntermediateTest < MiniTest::Test
     intermediate = Intermediate.new
     result = intermediate.int_code
 
-    assert_equal true, result.include?("r")
-    assert_equal true, result.include?("g")
-    assert_equal true, result.include?("b")
-    assert_equal true, result.include?("y")
-    assert_equal true, result.include?("p")
+    assert_equal true, result.any?{|color| color = "r", "g", "b", "y"}
   end
 
   def test_it_creates_random_code_each_time
@@ -33,7 +29,7 @@ class IntermediateTest < MiniTest::Test
     intermediate = Intermediate.new
     assert_equal true, intermediate.playing_game
     intermediate.current_game("q")
-    refute intermediate.playing_game == true
+    assert_equal false, intermediate.playing_game
   end
 
   def test_c_gives_cheat_code
@@ -45,8 +41,13 @@ class IntermediateTest < MiniTest::Test
   end
 
   def test_guess_can_win
+    skip
     intermediate = Intermediate.new
     intermediate.check_guess(intermediate.int_code)
+    int_code = ["y", "r", "b", "y", "w", "y"]
+    guess = ["y", "r", "b", "y", "w", "y"]
+
+    assert_equal false, intermediate.int_game_win(guess)
   end
 
   def test_guess_is_too_long

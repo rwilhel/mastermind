@@ -41,25 +41,52 @@ class Beginner
     @element = correct_elements.length
   end
 
-  def check_guess(guess)
-    if guess == beg_code
-      beg_game_win(guess)
-    elsif guess.count > 4
-      track_guess
-      print Messages.long_guess_message
-      @playing_game = true
-    elsif guess.count < 4
-      track_guess
-      print Messages.short_guess_message
-      @playing_game = true
-    else
-      track_guess
-      position_compare(guess, beg_code)
-      color_compare(guess, beg_code)
-      print Messages.incorrect_message(@element, @position, @guess_count)
-      @playing_game = true
-    end
+  def guess_is_right(guess)
+    guess == beg_code
+    beg_game_win(guess)
   end
+
+  def guess_long(guess)
+    guess.count > 4
+    track_guess
+    print Messages.long_guess_message
+    @playing_game = true
+  end
+
+  def guess_short(guess)
+    guess.count < 4
+    track_guess
+    print Messages.short_guess_message
+    @playing_game = true
+  end
+
+  def guess_wrong(guess)
+    track_guess
+    position_compare(guess, beg_code)
+    color_compare(guess, beg_code)
+    print Messages.incorrect_message(@element, @position, @guess_count)
+    @playing_game = true
+  end
+
+  # def check_guess(guess)
+  #   if guess == beg_code
+  #     beg_game_win(guess)
+  #   elsif guess.count > 4
+  #     track_guess
+  #     print Messages.long_guess_message
+  #     @playing_game = true
+  #   elsif guess.count < 4
+  #     track_guess
+  #     print Messages.short_guess_message
+  #     @playing_game = true
+  #   else
+  #     track_guess
+  #     position_compare(guess, beg_code)
+  #     color_compare(guess, beg_code)
+  #     print Messages.incorrect_message(@element, @position, @guess_count)
+  #     @playing_game = true
+  #   end
+  # end
 
   def track_guess
     @guess_count += 1

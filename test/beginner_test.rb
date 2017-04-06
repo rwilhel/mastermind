@@ -2,6 +2,7 @@ require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/beginner'
+require './lib/messages'
 
 class BeginnerTest < MiniTest::Test
 
@@ -33,10 +34,11 @@ class BeginnerTest < MiniTest::Test
   end
 
   def test_c_gives_code
-    skip
     beginner = Beginner.new
     beginner.current_game("c")
     beg_code = ["y", "r", "g", "b"]
+    beginner.cheat_response(["y", "r", "g", "b"])
+
     assert_equal "The secret code is yrgb.", beginner.cheat_response(beg_code)
   end
 
@@ -60,38 +62,39 @@ class BeginnerTest < MiniTest::Test
 
   def test_guess_can_win
     beginner = Beginner.new
-    beginner.check_guess(beginner.beg_code)
     guess = ["y", "r", "b", "y"]
+    beg_code = ["y", "r", "b", "y"]
 
-    assert_equal false, beginner.beg_game_win(guess)
+    refute true, beginner.beg_game_win(guess).playing_game
   end
 
   def test_guess_is_too_long
     beginner = Beginner.new
-    beginner.check_guess(["y", "r", "b", "b", "g"])
+    beginner.guess_long(["y", "r", "b", "b", "g"])
 
     assert_equal true, beginner.playing_game
   end
 
   def test_guess_is_too_short
     beginner = Beginner.new
-    beginner.check_guess(["y", "r", "b"])
+    beginner.guess_short(["y", "r", "b"])
 
     assert_equal true, beginner.playing_game
   end
 
   def test_guess_is_incorrect
     beginner = Beginner.new
-    guess = ["y", "r", "b", "g"]
-    element = 3
+    beg_code = ["y", "r", "b", "g"]
+    guess = ["y", "r", "b", "y"]
 
-    assert_equal "Elements: 3", beginner.check_guess(guess)
-    # Messages.incorrect_message(element, position, guess_count)
+    assert_equal true, beginner.guess_wrong(guess)
   end
 
   def test_it_can_find_game_duration
+    skip
     beginner = Beginner.new
+    beginner.beg_game_win(["y", "r", "b", "g"])
 
-    assert_includes("Congratulations")
+    assert_equal false, beginner.playing_game
   end
 end
