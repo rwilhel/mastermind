@@ -11,6 +11,7 @@ class Beginner
     @playing_game = true
     @user = User.new
     @beg_code = [1,2,3,4].map { ["r","g","b","y"].sample }
+    @time_start = nil
   end
 
   def current_game(guess = "")
@@ -38,25 +39,30 @@ class Beginner
       end
     end
     @element = correct_elements.length
-
   end
 
   def check_guess(guess)
     if guess == beg_code
-      print Messages.correct_message(guess)
-      @playing_game = false
+      beg_game_win(guess)
     elsif guess.count > 4
+      track_guess
       print Messages.long_guess_message
       @playing_game = true
     elsif guess.count < 4
+      track_guess
       print Messages.short_guess_message
       @playing_game = true
     else
+      track_guess
       position_compare(guess, beg_code)
       color_compare(guess, beg_code)
-      print Messages.incorrect_message(guess, @element, @position)
+      print Messages.incorrect_message(@element, @position, @guess_count)
       @playing_game = true
     end
+  end
+
+  def track_guess
+    @guess_count += 1
   end
 
   def cheat_response(beg_code)
@@ -66,21 +72,17 @@ class Beginner
 
   def beg_game_start
     while playing_game == true
+      @time_start = Time.now
       current_game
     end
   end
 
-  # def calculate_time
-  #   @finish = Time.new
-  #   total = finish - start.round(2)
-  #   @minutes = Time.at(total).utc.strftime("%M")
-  #   @seconds = Time.at(total).utc.strftime("%S")
-  #   time
-  # end
-
-  # def find_positions_elements(guess, beg_code)
-  #   @positions = guess.zip(beg_code).count { | x | x[0] == x[1] }
-  #   @elements = guess.uniq.count { | x | beg_code.include?(x) }
-  # end
-
+  def beg_game_win(guess)
+    time_end = (Time.now - @time_start)
+    minutes = Time.at(time_end).utc.strftime("%M")
+    seconds = Time.at(time_end).utc.strftime("%S")
+    track_guess
+    print Messages.correct_message(guess, guess_count, minutes, seconds)
+    @playing_game = false
+  end
 end

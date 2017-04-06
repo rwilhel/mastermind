@@ -6,13 +6,16 @@ class Messages
   def self.opening_message
     "
 
-       ┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛
-          M      M      A    SSSSS  TTTTT  EEEEE  RRRRR  M     M  IIIII  N   N  DDDD
-          M M  M M     A A   S        T    E      R   R  M M M M    I    NN  N  D   D
-          M M  M M    A   A   SSS     T    EEEEE  RRRR   M M M M    I    NN  N  D   D
-          M   M  M    AAAAA      S    T    E      R   R  M  M  M    I    N N N  D   D
-          M   M  M   A     A SSSSS    T    EEEEE  R   R  M  M  M  IIIII  N  NN  D DD
-       ┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛
+                          ┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛
+
+                        ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗██████╗
+                        ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗
+                        ██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║██║  ██║
+                        ██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██║  ██║
+                        ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██████╔╝
+                        ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝
+
+                        ┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛┏(-_-)┓┏(-_-)┛┗(-_- )┓┗(-_-)┛
 
 
     "
@@ -54,13 +57,11 @@ class Messages
     "Your guess is too short. :( Try again!\n"
   end
 
-  def self.correct_message(guess)
-    "Congratulations! You guessed the sequence '#{guess.join}'.\n"
-    # in #{guess_count} guesses over"
+  def self.correct_message(guess, guess_count, minutes, seconds)
+    "Congratulations! You guessed the sequence '#{guess.join}' in #{guess_count} guesses and it only took #{minutes} minute(s) and #{seconds} second(s).\n"
   end
 
-  def self.incorrect_message(guess, element, position)
+  def self.incorrect_message(element, position, guess_count)
     "Wrong! Your guess has #{element} of the correct elements with #{position} in the correct positions. Guess(es) taken: #{guess_count}\n"
-
   end
 end
