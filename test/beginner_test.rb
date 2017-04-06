@@ -40,11 +40,30 @@ class BeginnerTest < MiniTest::Test
     assert_equal "The secret code is yrgb.", beginner.cheat_response(beg_code)
   end
 
+  def test_can_find_guess_position_with_code
+    beginner = Beginner.new
+
+    guess = ["y", "r", "b", "y"]
+    beg_code = ["y", "r", "g", "b"]
+
+    assert_equal 2, beginner.position_compare(guess, beg_code)
+  end
+
+  def test_can_find_number_of_elements_in_guess
+    beginner = Beginner.new
+
+    guess = ["y", "r", "b", "y"]
+    beg_code = ["y", "r", "g", "b"]
+
+    assert_equal 3, beginner.color_compare(guess, beg_code)
+  end
+
   def test_guess_can_win
     beginner = Beginner.new
     beginner.check_guess(beginner.beg_code)
+    guess = ["y", "r", "b", "y"]
 
-    assert_equal false, beginner.playing_game
+    assert_equal false, beginner.beg_game_win(guess)
   end
 
   def test_guess_is_too_long
@@ -62,10 +81,17 @@ class BeginnerTest < MiniTest::Test
   end
 
   def test_guess_is_incorrect
-
     beginner = Beginner.new
+    guess = ["y", "r", "b", "g"]
     element = 3
 
-    assert_equal "Elements: 3", Messages.incorrect_message(element)
+    assert_equal "Elements: 3", beginner.check_guess(guess)
+    # Messages.incorrect_message(element, position, guess_count)
+  end
+
+  def test_it_can_find_game_duration
+    beginner = Beginner.new
+
+    assert_includes("Congratulations")
   end
 end
